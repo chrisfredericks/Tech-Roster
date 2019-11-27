@@ -1,0 +1,36 @@
+@import "./_globals";
+@import "./../node_modules/@fortawesome/fontawesome-free/css/all.min.css";
+
+html {
+	height:100%;
+	overflow-y: scroll;
+}
+
+body {
+    height:100%;
+    padding:20px;
+    margin:0;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    color: $text-color;
+    background-color: $background-color;
+}
+
+.loading-overlay {
+    position: fixed;
+    z-index: 999;
+    left:0px;
+    top:0px;
+    right:0px;
+    bottom:0px;
+    overflow: show;
+    margin: auto;
+    background-color: $accent-color;
+    @include display-flex();
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+    color: #FFFFFF;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 48px;
+}
