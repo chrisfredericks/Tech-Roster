@@ -1,0 +1,47 @@
+@import "./../../_globals";
+
+#name {
+    width: 275px;
+    height: 30px;
+    font-size: 20px;
+    border-radius: 5px;
+}
+
+#description {
+    width: 325px;
+    height: 30px;
+    font-size: 20px;
+    border-radius: 5px;
+}
+
+#difficulty {
+    width: 40px;
+    height: 30px;
+    font-size: 20px;
+    border-radius: 5px;
+}
+
+#courseCheckbox {
+    width: 100%;
+    height: 30px;
+    font-size: 20px;
+}
+
+.content {    
+
+    &__section {  
+        @include display-flex();
+        flex-flow: column nowrap;
+        font-size: 18px;
+    }
+
+    &__caption {
+        padding-top:15px;
+        padding-bottom:10px;
+        color: $accent-color;
+    }
+
+    &__caption button {
+        margin-left: 47px;
+    }
+}

@@ -1,0 +1,30 @@
+@import "./../../_globals";
+
+#courseCode {
+    width: 275px;
+    height: 30px;
+    font-size: 20px;
+    border-radius: 5px;
+}
+
+#courseName {
+    width: 275px;
+    height: 30px;
+    font-size: 20px;
+    border-radius: 5px;
+}
+
+.content {    
+
+    &__section {  
+        @include display-flex();
+        flex-flow: column nowrap;
+        font-size: 18px;
+    }
+
+    &__caption {
+        padding-top:15px;
+        padding-bottom:10px;
+        color: $accent-color;
+    }
+}

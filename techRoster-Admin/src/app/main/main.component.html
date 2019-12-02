@@ -1,0 +1,61 @@
+<div class="content">
+  <div class="content__section">
+    <div class="content__caption">
+      <h1>Technologies:</h1> 
+      <a [routerLink]="['/addtech']">
+        <button>
+          <i class="fa fa-plus fa-2x"></i>
+        </button>
+      </a>
+    </div>
+    <div class="content__list" *ngFor="let tech of data.technologies">
+      <div class="content__list__item">
+        <div>
+          <a [routerLink]="['/edittech']">
+            <button>
+              <i class="fa fa-edit fa-lg"></i>
+            </button>
+          </a>
+        </div>
+        <div>
+          <a [routerLink]="['/deletetech']">
+            <button>
+              <i class="fa fa-trash fa-lg"></i>
+            </button>
+          </a>
+        </div>
+        <div><h2>{{tech.name}}</h2></div>
+      </div>
+    </div>
+  </div>
+  <div class="content__section">
+    <div class="content__caption">
+      <h1>Courses:</h1> 
+      <a [routerLink]="['/addcourse']">
+        <button>
+          <i class="fa fa-plus fa-2x"></i>
+        </button>
+      </a>
+    </div>
+    <div class="content__list" *ngFor="let course of data.courses">
+      <div class="content__list__item">
+        <div>
+          <a [routerLink]="['/editcourse']">
+            <button>
+              <i class="fa fa-edit fa-lg"></i>
+            </button>
+          </a>
+        </div>
+        <div>
+          <a [routerLink]="['/deletecourse']">
+            <button>
+              <i class="fa fa-trash fa-lg"></i>
+            </button>
+          </a>
+        </div>
+        <div><h2>{{course.name}}</h2></div>
+      </div>
+    </div>
+  </div>
+
+</div>

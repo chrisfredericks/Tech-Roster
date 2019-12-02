@@ -1,0 +1,31 @@
+<div class="content">
+    <div class="content__caption">
+      <h1>Add New Technology:</h1>
+    </div> 
+    <div class="content__section">
+      <div class="divPadding">
+        <label>Name:</label><br>
+        <input id="name" type="text" maxlength="100" />
+      </div> 
+      <div class="divPadding">
+        <label>Description:</label><br>
+        <textarea id="description" rows="6" columns="50" maxlength="300"></textarea>
+      </div> 
+      <div class="divPadding">
+        <label>Difficulty:</label><br>
+        <input id="difficulty" type="number" value="1" min="1" max="5" onKeyUp="if(this.value>5){this.value='5';}else if(this.value<1){this.value='1';}" />
+      </div>
+      <div>
+        <label><b>Used in courses:</b></label><br><br>
+      </div>
+      <div class="divPadding" *ngFor="let course of data.courses">
+        <div>
+          <input type="checkbox">  {{course.name}}<br>
+        </div>
+      </div>
+      <div class="divPadding">
+          <button id="btnOk" type="submit">Ok</button>
+          <button id="btnCancel" type="submit" [routerLink]="['/main']">Cancel</button>
+      </div>
+  </div>
+</div>

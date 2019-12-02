@@ -1,0 +1,19 @@
+<div class="content">
+    <div class="content__caption">
+      <h1>Add New Course:</h1>
+    </div> 
+    <div class="content__section">
+      <div class="divPadding">
+        <label>Course Code:</label><br>
+        <input id="courseCode" type="text" name="courseCode" [(ngModel)]="data.courseCode" maxlength="100" />
+      </div> 
+      <div class="divPadding">
+        <label>Name:</label><br>
+        <input id="courseName" type="text" name="courseName" [(ngModel)]="data.courseName" maxlength="100" />
+      </div> 
+      <div class="divPadding">
+          <button id="btnOk" type="submit" (click)="data.addCourse()" [routerLink]="['/main']">Ok</button>
+          <button id="btnCancel" type="submit" [routerLink]="['/main']">Cancel</button>
+      </div>
+  </div>
+</div>

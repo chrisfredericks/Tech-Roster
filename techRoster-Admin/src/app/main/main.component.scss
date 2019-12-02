@@ -1,0 +1,50 @@
+@import "./../../_globals";
+
+button {
+    margin-top: 15px;
+    margin-right: 5px;
+    padding: 5px;
+}
+
+.content {  
+    @include display-flex();
+    flex-flow: row wrap;
+
+    &__section {
+        margin-bottom:20px;
+        margin-right: 200px;
+    }
+
+    &__caption {
+        padding-top:15px;
+        padding-bottom:10px;
+        color: $accent-color;
+    }
+
+    &__caption button {
+        margin-left: 47px;
+    }
+    
+    &__list {
+        border-left: 5px solid $accent_color;
+        margin-left:30px;
+        padding-left:10px;
+        padding-top:5px;        
+        padding-bottom:3px;  
+        
+        &__item {
+            @include display-flex();
+            flex-flow: row nowrap;  
+        }
+
+        & a {
+            font-weight: bold;
+            font-size:14px;
+            color:$accent-color;
+            text-decoration: none;
+        }
+        & a:hover {
+            text-decoration: underline;
+        }
+    }
+}

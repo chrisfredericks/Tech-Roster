@@ -19,3 +19,28 @@ $greyed-color: #C0C0C0;
     -ms-flex: $args;
     flex: $args; 
 }
+
+button {
+    margin-top: 20px;
+    margin-right: 5px;
+    padding: 5px;
+}
+
+.divPadding {
+    padding-bottom: 20px;
+}
+
+#btnOk {
+    background-color: $accent-color;
+    font-size: 20px;
+    padding: 7px;
+    margin-right: 10px;
+    border-radius: 5px;
+}
+
+#btnCancel {
+    background-color: $accent-color;
+    font-size: 20px;
+    padding: 7px;
+    border-radius: 5px;
+}

@@ -48,7 +48,7 @@ app.get("/get", async (request, response) => {
     }
 });
 
-app.post("/post", async (request, response) => {
+app.post("/postTech", async (request, response) => {
     // construct MongoClient object for working with MongoDB
     let mongoClient = new MongoClient(URL, { useNewUrlParser: true, useUnifiedTopology: true });
     // Use connect method to connect to the server
@@ -90,6 +90,7 @@ app.post("/postCourse", async (request, response) => {
     try {
         await mongoClient.connect(); 
         // convert all documents in technologies collection into array in one awesome statement!
+        
         let courseCollection = mongoClient.db(DB_NAME).collection("courses");
         
         console.log("incoming JSON!");
@@ -113,7 +114,7 @@ app.post("/postCourse", async (request, response) => {
     }
 });
 
-app.put("/put/:id", async (request, response) => {
+app.put("/putTech/:id", async (request, response) => {
     // construct MongoClient object for working with MongoDB
     let mongoClient = new MongoClient(URL, { useNewUrlParser: true, useUnifiedTopology: true });
     // Use connect method to connect to the server
@@ -192,7 +193,7 @@ app.put("/putCourse/:id", async (request, response) => {
     }
 });
 
-app.delete("/delete/:id", async (request, response) => {
+app.delete("/deleteTech/:id", async (request, response) => {
     // construct MongoClient object for working with MongoDB
     let mongoClient = new MongoClient(URL, { useNewUrlParser: true, useUnifiedTopology: true });
     // Use connect method to connect to the server
