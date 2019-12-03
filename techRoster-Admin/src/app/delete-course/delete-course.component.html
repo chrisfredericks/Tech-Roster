@@ -3,10 +3,10 @@
       <h2>Are you sure you want to delete the following course?</h2>
     </div> 
     <div>
-      <h2>test</h2>
+      <h1>{{data.courseName}}</h1>
     </div>
     <div class="divPadding">
-        <button id="btnOk" type="submit">Ok</button>
+        <button id="btnOk" type="submit" (click)="data.deleteCourseSubmit(data.courseId, data.courseCode)" [routerLink]="['/main']">Ok</button>
         <button id="btnCancel" type="submit" [routerLink]="['/main']">Cancel</button>
     </div>
 </div>

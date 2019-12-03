@@ -18,7 +18,7 @@
           </a>
         </div>
         <div>
-          <a [routerLink]="['/deletetech']">
+          <a [routerLink]="['/deletetech']" (click)="data.deleteTech(tech._id, tech.name)" >
             <button>
               <i class="fa fa-trash fa-lg"></i>
             </button>
@@ -47,7 +47,7 @@
           </a>
         </div>
         <div>
-          <a [routerLink]="['/deletecourse']">
+          <a [routerLink]="['/deletecourse']" (click)="data.deleteCourse(course._id, course.code, course.name)" >
             <button>
               <i class="fa fa-trash fa-lg"></i>
             </button>

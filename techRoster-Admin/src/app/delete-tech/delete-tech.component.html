@@ -3,10 +3,10 @@
       <h2>Are you sure you want to delete the following Technology?</h2>
     </div> 
     <div>
-      <h2>test</h2>
+      <h1>{{data.techName}}</h1>
     </div>
     <div class="divPadding">
-        <button id="btnOk" type="submit">Ok</button>
+        <button id="btnOk" type="submit" (click)="data.deleteTechSubmit(data.techId)" [routerLink]="['/main']">Ok</button>
         <button id="btnCancel" type="submit" [routerLink]="['/main']">Cancel</button>
     </div>
 </div>

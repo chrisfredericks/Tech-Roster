@@ -230,25 +230,23 @@ app.delete("/deleteTech/:id", async (request, response) => {
     }
 });
 
-app.delete("/deleteCourse/:id", async (request, response) => {
+app.delete("/deleteCourse/:id/:courseCode", async (request, response) => {
     // construct MongoClient object for working with MongoDB
     let mongoClient = new MongoClient(URL, { useNewUrlParser: true, useUnifiedTopology: true });
     // Use connect method to connect to the server
     try {
         await mongoClient.connect(); 
-        // convert all documents in technologies collection into array in one awesome statement!
+        // convert all documents in courses collection into array in one awesome statement!
         let courseCollection = mongoClient.db(DB_NAME).collection("courses");
         
         // convert url routing parameter to ObjectId format (24 byte hex string)
         let id = objectId(request.params.id);
 
         // building our delete query
-        let selector = {"_id": id};
+        let courseSelector = {"_id": id};
         // make it happen! delete the document in mongoDB
-        let result = await courseCollection.deleteOne(selector);        
-
-        mongoClient.close();
-        
+        let result = await courseCollection.deleteOne(courseSelector); 
+             
         
         if (result.result.n == 0) {
             response.status(500);
@@ -265,6 +263,42 @@ app.delete("/deleteCourse/:id", async (request, response) => {
         response.send({error: `Server error with get : ${error}`});
         throw error;
     }
+
+    try {
+        // convert all documents in technologies collection into array in one awesome statement!
+        let techCollection = mongoClient.db(DB_NAME).collection("technologies");
+        
+        // convert url routing parameter to ObjectId format (24 byte hex string)
+        let code = request.params.courseCode;
+        console.log("code: " + code);
+        //console.log("Array: " + techCollection.courses[0].code);
+
+        // building our update query
+        let techCodeSelector = {"courses.code": code};
+        let techCodeUpdate = {$pull: {courses: { code: code }}};
+
+        // make it happen! delete the document in mongoDB
+        let techCodeResult = await techCollection.updateMany(techCodeSelector, techCodeUpdate);       
+
+        mongoClient.close();
+        
+        
+        // if (techCodeResult.result.n == 0) {
+        //     response.status(500);
+        //     response.send({error: "Course Code not found in any technologies"});
+        // } else {
+        //     response.status(200);
+        //     // send the result of the delete back to use on client
+        //     response.send(techCodeResult);
+        // }
+
+    } catch (error) {
+        console.log(`>>> ERROR : ${error}`);
+        // response.status(500);
+        // response.send({error: `Server error with get : ${error}`});
+        throw error;
+    }
+
 });
 
 app.listen(8080, () => console.log("Listening on port 8080"));
