@@ -180,7 +180,6 @@ app.put("/putCourse/:id", async (request, response) => {
         // make it happen! update the document in mongoDB
         let result = await courseCollection.updateOne(selector, newValue);        
 
-        mongoClient.close();
         response.status(200);
         // send the result of the insert back to use on client
         response.send(result);
@@ -189,6 +188,28 @@ app.put("/putCourse/:id", async (request, response) => {
         console.log(`>>> ERROR : ${error}`);
         response.status(500);
         response.send({error: `Server error with get : ${error}`});
+        throw error;
+    }
+
+    try {
+        // convert all documents in technologies collection into array in one awesome statement!
+        let courseCollection = mongoClient.db(DB_NAME).collection("technologies");
+        //console.log();
+        // building our update query
+        let selector = {"courses.code": request.body.code};
+        let newValue = {$set: {"courses.$": {
+                "code" : request.body.code, 
+                "name" : request.body.name 
+            }
+        } };
+        console.log(newValue);
+        // make it happen! update the document in mongoDB
+        let result = await courseCollection.updateMany(selector, newValue);        
+
+        mongoClient.close();;
+
+    } catch (error) {
+        console.log(`>>> ERROR : ${error}`);
         throw error;
     }
 });

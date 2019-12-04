@@ -5,14 +5,14 @@
     <div class="content__section">
       <div class="divPadding">
         <label>Course Code:</label><br>
-        <input id="courseCode" type="text" maxlength="100" />
+        <input id="courseCode" type="text" maxlength="100" [(ngModel)]="data.courseCode" disabled/>
       </div> 
       <div class="divPadding">
         <label>Name:</label><br>
-        <input id="courseName" type="text" maxlength="100" />
+        <input id="courseName" type="text" maxlength="100" name="courseName" [(ngModel)]="data.courseName" />
       </div> 
       <div class="divPadding">
-          <button id="btnOk" type="submit">Ok</button>
+          <button id="btnOk" type="submit" [routerLink]="['/main']" (click)="data.updateCourse(data.courseId)">Ok</button>
           <button id="btnCancel" type="submit" [routerLink]="['/main']">Cancel</button>
       </div>
   </div>

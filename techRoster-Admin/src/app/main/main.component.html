@@ -13,18 +13,18 @@
         <div>
           <a [routerLink]="['/edittech']">
             <button>
-              <i class="fa fa-edit fa-lg"></i>
+              <i class="fa fa-edit"></i>
             </button>
           </a>
         </div>
         <div>
           <a [routerLink]="['/deletetech']" (click)="data.deleteTech(tech._id, tech.name)" >
             <button>
-              <i class="fa fa-trash fa-lg"></i>
+              <i class="fa fa-trash"></i>
             </button>
           </a>
         </div>
-        <div><h2>{{tech.name}}</h2></div>
+        <div><h3>{{tech.name}}</h3></div>
       </div>
     </div>
   </div>
@@ -40,20 +40,20 @@
     <div class="content__list" *ngFor="let course of data.courses">
       <div class="content__list__item">
         <div>
-          <a [routerLink]="['/editcourse']">
+          <a [routerLink]="['/editcourse']" (click)="data.populateCourseEdit(course._id, course.code, course.name)" >
             <button>
-              <i class="fa fa-edit fa-lg"></i>
+              <i class="fa fa-edit"></i>
             </button>
           </a>
         </div>
         <div>
           <a [routerLink]="['/deletecourse']" (click)="data.deleteCourse(course._id, course.code, course.name)" >
             <button>
-              <i class="fa fa-trash fa-lg"></i>
+              <i class="fa fa-trash"></i>
             </button>
           </a>
         </div>
-        <div><h2>{{course.name}}</h2></div>
+        <div><h3>{{course.name}}</h3></div>
       </div>
     </div>
   </div>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from "../data.service";
+import { Course } from '../data.model';
 
 @Component({
   selector: 'app-add-tech',

@@ -12,7 +12,6 @@ export class MainComponent implements OnInit {
   constructor(public data:DataService) { }
 
   ngOnInit() {
-    // this.data.loaded = true;
   }
 
 }
