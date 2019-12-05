@@ -5,11 +5,11 @@
     <div class="content__section">
       <div class="divPadding">
         <label>Name:</label><br>
-        <input id="name" type="text" name="techName" [(ngModel)]="data.techName" maxlength="100" />
+        <input id="name" type="text" name="techName" [(ngModel)]="data.techName" maxlength="100" [required]="data.techname" />
       </div> 
       <div class="divPadding">
         <label>Description:</label><br>
-        <textarea id="description" name="techDescription" [(ngModel)]="data.techDescription" rows="6" columns="50" maxlength="300"></textarea>
+        <textarea id="description" name="techDescription" [(ngModel)]="data.techDescription" rows="6" columns="50" maxlength="300" required></textarea>
       </div> 
       <div class="divPadding">
         <label>Difficulty:</label><br>
@@ -24,7 +24,7 @@
         </div>
       </div>
       <div class="divPadding">
-          <button id="btnOk" type="submit" (click)="data.addTech()" [routerLink]="['/main']">Ok</button>
+          <button id="btnOk" type="submit" (click)="data.addTech()" [routerLink]="['/main']" [disabled]="!data.techName || !data.techDescription || !data.techDifficulty">Ok</button>
           <button id="btnCancel" type="submit" [routerLink]="['/main']">Cancel</button>
       </div>
   </div>

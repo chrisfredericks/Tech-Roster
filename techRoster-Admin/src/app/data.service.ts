@@ -24,6 +24,7 @@ export class DataService {
     private courseObject:Course;
     private techObject:Technology;
     private techCourseObject:TechnologyCourse;
+    public checkd:boolean;
 
     // course properties
     public courseId:string;
@@ -61,7 +62,7 @@ export class DataService {
 
             },
             err => {
-                console.log("Error retrieving portfolio data :(");
+                console.log("Error retrieving data :(");
             }
         );
     } 
@@ -162,58 +163,121 @@ export class DataService {
         )
     }
 
-    public coursesClicked(code, name, event:any):void {
-        this.techCourseObject = {
-            "code": code,
-            "name": name
-        }
-        if (event.target.checked) {
-            this.techCourses.push(this.techCourseObject);
-        }
-        else {
-            //find the course in the techCourses array and remove it
-            this.techCourses.forEach( (item, index) => {
-              if(item === this.techCourseObject) this.techCourses.splice(index,1);
-            });
-        }
-        console.log("tech courses: ", this.techCourses);
-
+    public populateTechEdit(tech: Technology):void {
+        this.techId = tech._id;
+        this.techName = tech.name;
+        this.techDescription = tech.description;
+        this.techDifficulty = tech.difficulty; 
+        this.techCourses = tech.courses;
     }
 
-    public addTech():void {
+
+    public updateTech(id: string):void {
         this.techObject = {
-            "_id": null,
+            "_id": id,
            "name": this.techName,
            "description": this.techDescription,
            "difficulty": this.techDifficulty,
            "courses": this.techCourses
        }
 
-       this.loaded = false; 
-       this.http.post<Technology>(this.postTechScript, this.techObject).subscribe(
-           data => {
-               console.log("POST is successful")
+        this.loaded = false;                
+        this.http.put((this.putTechScript + "/" + id), this.techObject).subscribe(
+            data => {
+                console.log("Update is successful")
+                this.resetValues();
+                this.load();
+            },
+            error => {
+                console.log("Error", error);
+                this.loaded = true;
+            }
+        )
+    }
+    
+    public addTech():void {
+        this.techObject = {
+            "_id": null,
+            "name": this.techName,
+            "description": this.techDescription,
+           "difficulty": this.techDifficulty,
+           "courses": this.techCourses
+        }
+        
+        this.loaded = false; 
+        this.http.post<Technology>(this.postTechScript, this.techObject).subscribe(
+            data => {
+                console.log("POST is successful")
                               
                this.resetValues();
                this.load();
-           },
-           error => {
-               console.log("Error", error);
-               this.loaded = true;
-           }
-       );
-    }
+            },
+            error => {
+                console.log("Error", error);
+                this.loaded = true;
+            }
+            );
+        }
+    
+        public coursesClicked(code: string, name: string):void {
+            //console.log(event);
+            this.techCourseObject = {
+                "code": code,
+                "name": name
+            }
+            let ind:number; 
+            this.techCourses.find((course, index) => {
+                if (course.code == code) ind = index;
+            });
 
-    // ------------------------------------ private methods
-
-    private resetValues():void {
+            if (this.techCourses.find(c => c.code == code)) {
+                this.techCourses.splice(ind, 1);
+            } else {
+                this.techCourses.push(this.techCourseObject);
+            }
+            console.log(this.techCourses);
+        }
+        
+        public isChecked(id: string, code: string):boolean {
+            let count = 0;
+            let newArray:Technology[] = this.technologies.filter(function(tech) {
+                return tech._id == id;
+            });
+            
+            newArray[0].courses.forEach((course) => {            
+                if (course.code == code) {
+                    count++;                  
+                }
+            });
+            if (count > 0) {
+                return true;
+            } else {
+                return false;
+            } 
+        }
+        
+        // ------------------------------------ private methods
+        
+        private resetValues():void {
         this.courseId = null;
         this.courseCode = "";
         this.courseName = "";
+        this.courseObject = {
+            "_id": null,
+            "name": "",
+            "code": ""
+        };
         this.techId = null;
         this.techName = "";
         this.techDescription = "";
         this.techDifficulty = 1;        
         this.techCourses = [];
+        this.techObject = {
+            "_id": null,
+            "name": "",
+            "description": "",
+            "difficulty": 1,
+            "courses": []
+        };
     }
 }

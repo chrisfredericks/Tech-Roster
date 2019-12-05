@@ -9,7 +9,7 @@
       </div> 
       <div class="divPadding">
         <label>Name:</label><br>
-        <input id="courseName" type="text" maxlength="100" name="courseName" [(ngModel)]="data.courseName" />
+        <input id="courseName" type="text" maxlength="100" [(ngModel)]="data.courseName" />
       </div> 
       <div class="divPadding">
           <button id="btnOk" type="submit" [routerLink]="['/main']" (click)="data.updateCourse(data.courseId)">Ok</button>

@@ -232,8 +232,7 @@ app.delete("/deleteTech/:id", async (request, response) => {
         let result = await techCollection.deleteOne(selector);        
 
         mongoClient.close();
-        
-        
+                
         if (result.result.n == 0) {
             response.status(500);
             response.send({error: "id not found"});
@@ -302,21 +301,9 @@ app.delete("/deleteCourse/:id/:courseCode", async (request, response) => {
         let techCodeResult = await techCollection.updateMany(techCodeSelector, techCodeUpdate);       
 
         mongoClient.close();
-        
-        
-        // if (techCodeResult.result.n == 0) {
-        //     response.status(500);
-        //     response.send({error: "Course Code not found in any technologies"});
-        // } else {
-        //     response.status(200);
-        //     // send the result of the delete back to use on client
-        //     response.send(techCodeResult);
-        // }
 
     } catch (error) {
         console.log(`>>> ERROR : ${error}`);
-        // response.status(500);
-        // response.send({error: `Server error with get : ${error}`});
         throw error;
     }
 

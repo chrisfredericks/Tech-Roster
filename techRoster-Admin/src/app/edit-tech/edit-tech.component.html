@@ -5,26 +5,29 @@
     <div class="content__section">
       <div class="divPadding">
         <label>Name:</label><br>
-        <input id="name" type="text" maxlength="100" />
+        <input id="name" type="text" maxlength="100" [(ngModel)]="data.techName" />
       </div> 
       <div class="divPadding">
         <label>Description:</label><br>
-        <textarea id="description" rows="6" columns="50" maxlength="300"></textarea>
+        <textarea id="description" rows="6" columns="50" maxlength="300" [(ngModel)]="data.techDescription"></textarea>
       </div> 
       <div class="divPadding">
         <label>Difficulty:</label><br>
-        <input id="difficulty" type="number" value="1" min="1" max="5" onKeyUp="if(this.value>5){this.value='5';}else if(this.value<1){this.value='1';}" />
+        <input id="difficulty" type="number"min="1" max="5" [(ngModel)]="data.techDifficulty" onKeyUp="if(this.value>5){this.value='5';}else if(this.value<1){this.value='1';}" />
       </div>
       <div>
         <label><b>Used in courses:</b></label><br><br>
       </div>
       <div class="divPadding" *ngFor="let course of data.courses">
         <div>
-          <input type="checkbox">  {{course.name}}<br>
+          <input
+            type="checkbox" 
+            [checked]="data.isChecked(data.techId, course.code)" 
+            (click)="data.coursesClicked(course.code, course.name)" />  {{course.name}}<br>
         </div>
       </div>
       <div class="divPadding">
-          <button id="btnOk" type="submit">Ok</button>
+          <button id="btnOk" type="submit" (click)="data.updateTech(data.techId)" [routerLink]="['/main']">Ok</button>
           <button id="btnCancel" type="submit" [routerLink]="['/main']">Cancel</button>
       </div>
   </div>
