@@ -124,6 +124,18 @@ db.courses.insert([
         "name":"Developing for Content Management Systems",
     },
     {
+        "code": "WEBD1000",
+        "name": "Website Development"
+    },
+    {
+        "code": "APPD1001",
+        "name": "User Interface Design & Development"
+    },
+    {
+        "code": "PROG1400",
+        "name": "Intro to Object Oriented Programming"
+    },
+    {
         "code":"INET2005",
         "name":"Web Application Programming I",
     },
