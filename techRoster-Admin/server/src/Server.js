@@ -206,7 +206,7 @@ app.put("/putCourse/:id", async (request, response) => {
         // make it happen! update the document in mongoDB
         let result = await courseCollection.updateMany(selector, newValue);        
 
-        mongoClient.close();;
+        mongoClient.close();
 
     } catch (error) {
         console.log(`>>> ERROR : ${error}`);
